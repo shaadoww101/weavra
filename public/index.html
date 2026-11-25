@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d13">
+<title>WEAVRA — Intelligence that gets to work</title>
+<meta name="description" content="Discover specialized AI agents, orchestrate intelligent work, and turn your expertise into an agent business with WEAVRA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top"><div class="wrap navwrap">
+<a class="brand" href="#"><span class="brandmark">W</span>WEAVRA<em>.</em></a>
+<nav class="links"><a href="#platform">Platform</a><a href="#agents">AI agents</a><a href="#chat">Chat</a><a href="#workflows">Workflows</a><a href="#pricing">Pricing</a></nav>
+<div style="display:flex;gap:10px;align-items:center"><span class="modepill" id="modepill">● CHECKING…</span><a class="btn primary small" href="#agents">Explore agents ↗</a></div>
+</div></header>
+<main>
+<section class="hero"><div class="wrap herogrid">
+<div><div class="eyebrow">THE INTELLIGENCE LAYER FOR WORK</div>
+<h1>Intelligence<br>that <span class="shine">gets to work.</span></h1>
+<p class="lead">Meet the platform connecting people, businesses and intelligent agents. Discover specialized AI, orchestrate complex work, and turn your own expertise into an agent people can use.</p>
+<p class="notice" id="modenote" style="max-width:560px"></p>
+<div class="herocta"><a class="btn primary" href="#agents">Explore the agent marketplace ↗</a><a class="btn" href="#chat">Try the live chat</a></div>
+<div class="mono" style="color:#75858a;font-size:10px;letter-spacing:.5px">ONE ECOSYSTEM · MANY CAPABILITIES · WORK THAT MOVES FORWARD</div></div>
+<div class="card"><div class="eyebrow">TRY IT NOW</div><h2 style="font:700 22px Manrope,sans-serif;margin:12px 0">Ask Atlas about the refund policy.</h2>
+<p style="color:var(--muted);font-size:13px;line-height:1.7">Pick any of the six agents below, ask a question grounded in the knowledge base, and watch the answer cite its source. Unsupported questions are answered honestly — not invented.</p>
+<a class="btn primary" href="#chat">Open chat ↗</a>
+<div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap"><span class="chip">6 agents</span><span class="chip">15 knowledge docs</span><span class="chip">3 sample workflows</span><span class="chip">Human approval</span></div></div>
+</div></section>
+
+<section id="platform" style="background:#0b121a"><div class="wrap"><div class="sectionhead"><div><div class="kicker">01 / ONE CONNECTED PLATFORM</div><h2>From one smart agent<br>to an intelligent workforce.</h2></div><p>WEAVRA brings the essential pieces of agent-powered work into one ecosystem — so teams can move beyond isolated prompts and build repeatable outcomes.</p></div>
+<div class="split">
+<article class="card"><div style="font-size:24px;color:var(--lime)">⌘</div><h3>Agent orchestration</h3><p style="color:#9caeae;line-height:1.7">Coordinate specialized agents around a shared objective, with human approval checkpoints and reusable processes.</p></article>
+<article class="card"><div style="font-size:24px;color:var(--lime)">◈</div><h3>Knowledge intelligence</h3><p style="color:#9caeae;line-height:1.7">Connect business knowledge to the work. Answers are grounded in relevant documents, with citations — not guesses.</p></article>
+<article class="card"><div style="font-size:24px;color:var(--lime)">✳</div><h3>Agent marketplace</h3><p style="color:#9caeae;line-height:1.7">Discover focused agents for research, marketing, operations, development and more — each built around a job to be done.</p></article>
+<article class="card"><div style="font-size:24px;color:var(--lime)">↗</div><h3>Builder economy</h3><p style="color:#9caeae;line-height:1.7">Package your know-how as a useful agent, set task-based pricing, and make it discoverable to people who need it.</p></article>
+</div></div></section>
+
+<section id="agents"><div class="wrap"><div class="sectionhead"><div><div class="kicker">02 / DISCOVER SPECIALISTS</div><h2>Good work starts<br>with the right agent.</h2></div><p>All six agents are testable here. Open a profile to see what each one knows, then chat with it.</p></div>
+<div class="agentgrid" id="agentgrid"></div></div></section>
+
+<section id="chat" style="background:#0c141d"><div class="wrap"><div class="sectionhead"><div><div class="kicker">03 / LIVE CHAT</div><h2>Talk to your agent. Test an idea.</h2></div><p>Chat is grounded in the Knowledge Base on the right. Change agent to change what it knows and how it answers.</p></div>
+<div class="chatlayout">
+<div><div class="picker" id="picker"></div>
+<div class="chatbox"><div class="chatmsgs" id="chatMsgs"><div class="bubble ai">Hello! I’m <b id="chatAgentLabel">Atlas</b>. Ask me about the sample company knowledge, or try: <b>What is our refund policy?</b><span class="src">SYSTEM · READY · GROUNDED MODE</span></div></div>
+<div class="chatinput"><input id="chatInput" placeholder="Ask your agent something..." aria-label="Ask your agent"><button class="btn primary" onclick="sendChat()">Send ↗</button></div></div>
+<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+<button class="pick" onclick="document.getElementById('chatInput').value='What is our refund policy?';sendChat()">What is our refund policy?</button>
+<button class="pick" onclick="document.getElementById('chatInput').value='How do I plan a feature?';selectAgent('Nova');sendChat()">How do I plan a feature? (Nova)</button>
+<button class="pick" onclick="document.getElementById('chatInput').value='How should I run a growth experiment?';selectAgent('Pulse');sendChat()">Growth experiment? (Pulse)</button>
+</div></div>
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Knowledge Base</h3><span class="chip" id="kbcount">—</span></div>
+<p style="color:var(--muted);font-size:12px;line-height:1.6">What the selected agent knows. Add your own document below — it becomes searchable immediately.</p>
+<div id="kblist"></div>
+<div class="field"><label>ADD A DOCUMENT — TITLE</label><input id="kbTitle" placeholder="e.g. Support — Response times"></div>
+<div class="field"><label>COLLECTION</label><input id="kbCollection" placeholder="e.g. Support"></div>
+<div class="field"><label>CONTENT</label><textarea id="kbContent" rows="3" placeholder="Paste the text agents should use…"></textarea></div>
+<button class="btn primary" onclick="addKnowledge()">＋ Add to knowledge base</button></div>
+</div></div></section>
+
+<section id="workflows"><div class="wrap"><div class="sectionhead"><div><div class="kicker">04 / WORKFLOWS</div><h2>Connect agents into a system.</h2></div><p>Run a sample workflow, or build your own: name it, add steps, assign any agent per step, add a human approval gate, then run it live.</p></div>
+<div class="split"><div>
+<h3 style="margin-top:0">Sample workflows</h3><div id="wflist"></div>
+<h3>Build your own</h3><div class="card">
+<div class="field"><label>WORKFLOW NAME</label><input id="wfName" value="My workflow"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap" id="templates"></div>
+<div id="builderSteps" style="margin-top:10px"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn" onclick="addStep()">＋ Add step</button><button class="btn primary" onclick="saveWorkflow()">Save workflow ↗</button></div>
+</div></div>
+<div><h3 style="margin-top:0">Execution log</h3><div class="log" id="wflog">[SYSTEM] Workflow ready. Run a sample workflow or save and run your own.</div>
+<button class="btn primary" id="approveBtn" style="display:none;margin-top:12px" onclick="approveRun()">✓ Approve &amp; continue</button>
+<p class="notice" style="margin-top:12px">Approval steps pause the run until a human approves. Nothing after an approval gate runs without that click.</p></div>
+</div></div></section>
+
+<section id="builders" style="background:#0b121a"><div class="wrap"><div class="sectionhead"><div><div class="kicker">05 / FOR BUILDERS</div><h2>Your expertise deserves an audience.</h2></div><p>Build an agent around what you know, package it, and make it discoverable. Join the waitlist or the builder program below.</p></div>
+<div class="card"><form onsubmit="joinWaitlist(event)"><div class="split">
+<div class="field"><label>NAME</label><input id="wlName" placeholder="Your name"></div>
+<div class="field"><label>EMAIL</label><input id="wlEmail" type="email" required placeholder="you@example.com"></div></div>
+<div class="field"><label>I WANT TO</label><select id="wlType"><option value="waitlist">Join the waitlist</option><option value="builder">Become a builder</option><option value="enterprise">Talk about Enterprise</option></select></div>
+<button class="btn primary" type="submit">Join ↗</button></form></div></div></section>
+
+<section id="pricing"><div class="wrap"><div class="sectionhead"><div><div class="kicker">06 / PRICING</div><h2>Start with a task.<br>Scale into a workforce.</h2></div><p>Illustrative plans. Agent task prices are shown on each agent card above.</p></div>
+<div class="split"><div class="card"><div class="kicker">DISCOVER</div><h3>For curious teams</h3><p style="color:#9eaeac">Browse the marketplace, test agents, try workflows.</p><div style="font:700 28px Manrope,sans-serif">Free</div></div>
+<div class="card" style="border-color:#c8f16980"><div class="kicker">WORKSPACE</div><h3>For growing teams</h3><p style="color:#9eaeac">Agents, knowledge, workflows, approvals and evaluations in one place.</p><div style="font:700 28px Manrope,sans-serif">Custom</div></div></div></div></section>
+
+<section><div class="wrap"><div class="sectionhead"><div><div class="kicker">07 / QUESTIONS</div><h2>A few things worth knowing.</h2></div></div>
+<div class="card"><p><b>Is this the live or demo version?</b><br><span style="color:#9eaeac">Check the badge at the top. With an LLM key set (see README) chat is live AI grounded in the knowledge base. Without a key it runs in clearly-labelled DEMO MODE, answering from the seeded knowledge.</span></p>
+<p><b>Can I add my own knowledge?</b><br><span style="color:#9eaeac">Yes — use the Knowledge Base form above, or POST /api/knowledge. New documents are searchable immediately.</span></p>
+<p><b>Do workflows really pause for approval?</b><br><span style="color:#9eaeac">Yes. An Approval step pauses the run with status waiting_approval until POST /api/workflows/:id/approve (or the Approve button) is used.</span></p></div></div></section>
+</main>
+<footer><div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px"><div><a class="brand" href="#"><span class="brandmark">W</span>WEAVRA<em>.</em></a><div style="font-size:11px;color:#748487;margin-top:8px">The AI work exchange. Discover. Orchestrate. Deliver.</div></div><div style="font-size:11px;color:#748487">© 2026 WEAVRA · Deployable version · See README.md for run &amp; deploy steps</div></div></footer>
+<div class="modal" id="agentModal" onclick="if(event.target===this)closeAgent()"><div class="modalbox"><button class="close" onclick="closeAgent()">×</button><div class="eyebrow">WEAVRA AGENT PROFILE</div><h3 id="modalTitle" style="font:700 25px Manrope,sans-serif;margin:13px 0 8px"></h3><div class="role" id="modalRole"></div><p id="modalText" style="color:#a1afad;line-height:1.7"></p><div class="eyebrow" style="margin:16px 0 8px">WHAT THIS AGENT KNOWS</div><div id="modalKb"></div><button class="btn primary" id="modalChat" style="margin-top:16px">Chat with this agent ↗</button></div></div>
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+</body></html>

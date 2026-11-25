@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: weavra
+    env: node
+    plan: free
+    buildCommand: npm ci --omit=dev || npm install --omit=dev
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # OpenAI is the primary provider. Set the key in the Render dashboard
+      # (do NOT put keys in this file):
+      - key: LLM_PROVIDER
+        value: openai
+      - key: OPENAI_API_KEY
+        sync: false
+      # Fallbacks (only if you change LLM_PROVIDER to anthropic/cohere):
+      # - key: ANTHROPIC_API_KEY
+      #   sync: false
+      # - key: COHERE_API_KEY
+      #   sync: false
+    disk:
+      name: weavra-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1

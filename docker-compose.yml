@@ -1,0 +1,20 @@
+services:
+  weavra:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      # OpenAI is the primary provider. Demo mode until a key is set.
+      - LLM_PROVIDER=openai
+      # Set the key from your shell / .env file — never hard-code it here:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      # Fallbacks (only if you change LLM_PROVIDER):
+      # - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      # - COHERE_API_KEY=${COHERE_API_KEY:-}
+      - PORT=3000
+    volumes:
+      - weavra-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  weavra-data:

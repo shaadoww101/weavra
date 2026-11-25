@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = parseInt(process.env.PORT || '3000', 10);
-const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, 'data', 'db.json');
+const DATA_FILE = process.env.DATA_FILE || (process.env.VERCEL ? path.join('/tmp', 'weavra-db.json') : path.join(__dirname, 'data', 'db.json'));
 const LLM_PROVIDER_ENV = (process.env.LLM_PROVIDER || '').toLowerCase();
 const LLM_MODEL = process.env.LLM_MODEL || '';
 function modelFor(provider, fallback) {
@@ -106,8 +106,10 @@ function loadDb() {
   return db;
 }
 function saveDb(db) {
-  fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
-  fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2));
+  try {
+    fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
+    fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2));
+  } catch (e) { console.error('DB write failed (continuing in-memory):', e.message); }
 }
 let db = loadDb();
 
